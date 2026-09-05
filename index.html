@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive, bilingual playground to understand neural networks, one small experiment at a time.">
+  <title>Neuron Lab · 神经网络实验室</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a class="brand" href="index.html"><span class="brand-icon">n<span>·</span></span>neuron<span class="brand-light">lab</span></a><span class="header-note" data-i18n="tagline"></span><button id="language" class="language" aria-label="Switch language">EN / 中文</button></header>
+  <main>
+    <div class="intro"><div><div class="eyebrow" data-i18n="eyebrow"></div><h1 data-i18n="title"></h1><p data-i18n="subtitle"></p></div><div class="intro-mark" aria-hidden="true">●<span>—</span>◉<span>—</span>◎</div></div>
+    <nav id="lessons" aria-label="Lessons"></nav>
+    <section class="lesson-intro"><div><span id="chapter" class="eyebrow"></span><h2 id="lesson-title"></h2><p id="lesson-scenario"></p><p id="lesson-description"></p></div><button id="reset" class="secondary" data-i18n="reset"></button></section>
+    <div class="workspace">
+      <section class="card data-card"><div class="card-top"><h3><span class="section-number">01</span><span data-i18n="dataTitle"></span></h3><span id="dataset-tag" class="pill"></span></div><div class="legend"><span><i class="dot"></i><span data-i18n="observations"></span></span><span><i class="line"></i><span data-i18n="prediction"></span></span></div><div id="data-chart" class="chart"></div><p class="chart-foot" id="data-caption"></p></section>
+      <section class="card loss-card"><div class="card-top"><h3><span class="section-number">02</span><span data-i18n="lossTitle"></span></h3><span class="live"><i></i>LIVE</span></div><div class="loss-stats"><div><span id="loss-value">0.0000</span><span class="metric-name" id="loss-type"></span></div><div class="step-stat"><strong id="step-value">0</strong><span data-i18n="steps"></span></div></div><div id="loss-chart" class="chart"></div><p class="chart-foot" id="loss-caption"></p></section>
+      <section class="card network-card"><div class="card-top"><h3><span class="section-number">03</span><span data-i18n="networkTitle"></span></h3><span id="network-tag" class="pill"></span></div><div id="network-chart"></div><p class="chart-foot" id="network-caption"></p></section>
+      <section class="card controls-card"><div class="card-top"><h3><span class="section-number">04</span><span data-i18n="parameters"></span></h3><span class="adjust-icon">☷</span></div><div id="architecture"></div><div id="parameter-controls"></div><div id="training"></div></section>
+    </div>
+    <section class="card calculation"><div class="card-top"><h3><span class="section-number">05</span><span data-i18n="calculation"></span></h3><label class="sample-picker"><span data-i18n="sample"></span><select id="sample" aria-label="Select data sample"></select></label></div><div id="calculation"></div></section>
+    <section class="takeaway"><span class="tip-icon">✦</span><div><strong data-i18n="tryTitle"></strong><p id="challenge"></p><p id="achievement" role="status"></p></div><button id="next" class="secondary"></button></section>
+    <footer><span>neuronlab <span class="footer-dot">/</span> <span data-i18n="footer"></span></span><span data-i18n="synthetic"></span></footer>
+  </main><script src="model.js"></script><script src="app.js"></script>
+</body>
+</html>
