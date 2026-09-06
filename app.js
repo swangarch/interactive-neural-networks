@@ -110,7 +110,7 @@ let sidebarCollapsed=window.matchMedia('(max-width: 600px)').matches;
 try{const saved=localStorage.getItem('neuron-sidebar');if(saved)sidebarCollapsed=saved==='collapsed';}catch{}
 let inspectedLayer=0,inspectedNeuron=0;
 let lesson=0,net,data,history=[],steps=0,selected=12,rate=.1,timer=null,depth=1,width=3,adjustments=0,lastRate=null;
-const t=k=>copy[lang][k],dual=(zh,en)=>lang==='zh'?zh:en,fmt=(n,d=3)=>Number(n).toFixed(d),isLinear=()=>lesson<3,isMse=()=>lesson===1,isGradient=()=>lesson===2,isActivation=()=>lesson===3,isAdvanced=()=>lesson>=8,isProbability=()=>lesson===6,isClass=()=>lesson===7,canTrain=()=>[2,3,5,7].includes(lesson);
+const t=k=>copy[lang][k],dual=(zh,en)=>lang==='zh'?zh:en,fmt=(n,d=3)=>Number(n).toFixed(d),isLinear=()=>lesson<3,isMse=()=>lesson===1,isGradient=()=>lesson===2,isActivation=()=>lesson===3,isAdvanced=()=>lesson>=8,isProbability=()=>lesson===6,isClass=()=>lesson===7,canTrain=()=>[2,3,4,5,7].includes(lesson);
 function stop(){globalThis.AdvancedLessons.stop();clearInterval(timer);timer=null;const b=$('play');if(b)b.textContent='▶ '+t('play');}
 function createActivationStart(){
  // Randomize a visibly underfitting line while keeping some ReLUs active.
@@ -228,11 +228,12 @@ function renderTraining(){
 function trainingBatch(){
  if(isActivation())return Math.ceil(1+Math.min(40,steps*.06));
  if(isGradient())return Math.ceil(1+Math.min(8,steps*.04));
+ if(lesson===4)return Math.ceil(3+Math.min(35,steps*.06));
  if(lesson===5)return Math.ceil(8+Math.min(210,steps*.06));
  if(isClass())return Math.ceil(3+Math.min(35,steps*.06));
  return 1;
 }
-function reachedGoal(){return isClass()?data.filter(p=>(forward(net,p.x).value>=.5?1:0)===p.y).length/data.length===1&&loss(net,data)<networkLossTarget(net):lesson===4?adjustments>=5:loss(net,data)<(isLinear()?.018:lesson===5?networkLossTarget(net):.0005);}
+function reachedGoal(){return isClass()?data.filter(p=>(forward(net,p.x).value>=.5?1:0)===p.y).length/data.length===1&&loss(net,data)<networkLossTarget(net):loss(net,data)<(isLinear()?.018:lesson===5?networkLossTarget(net):.0005);}
 function advance(count){for(let i=0;i<count;i++){lastRate=trainStep(net,data,rate).usedRate;steps++;history.push(loss(net,data));}update();}
 function update(){
  const current=loss(net,data);$('loss-value').textContent=fmt(current,4);$('step-value').textContent=steps;
@@ -242,6 +243,7 @@ function update(){
   $('training-target').textContent=dual('停止目标：','Stop at: ')+(isClass()?dual('准确率 100% 且交叉熵','100% accuracy and cross-entropy'):'MSE')+' < '+fmt(target,6);
  }
  if(lesson===5||isClass())$('challenge').textContent=dual('当前结构越深、参数越多，目标 Loss 越低。按当前目标达标后自动暂停；可以继续手动走一步。','Deeper networks with more parameters have lower loss targets. Auto-training pauses at the current target; you can still take individual steps.');
+ if(lesson===4)$('challenge').textContent=dual('先手动调整参数，观察 ReLU 怎样组合出 U 形；再点击「走一步」或开启「自动训练」，让预测线靠近数据。MSE 低于 0.0005 时自动暂停，也可以随时暂停并更换网络结构。','Adjust parameters to explore how ReLU units form a U-shape, then take one step or auto-train to fit the data. Training pauses below MSE 0.0005; you can also pause and change the network structure.');
  const g=canTrain()?gradients(net,data):null;
  $('parameter-controls').querySelectorAll('input').forEach(el=>{const {l,i,j}=el.dataset,n=net.layers[l][i],value=j==='b'?n.b:n.w[j];if(Math.abs(value)>+el.max){const bound=Math.ceil(Math.abs(value));el.min=-bound;el.max=bound;el.nextElementSibling.firstElementChild.textContent='−'+bound;el.nextElementSibling.lastElementChild.textContent='+'+bound;}el.closest('.parameter').classList.toggle('inspected',+l===inspectedLayer&&+i===inspectedNeuron);el.value=value;$(el.id+'-value').textContent=fmt(value);if(g){const gradient=j==='b'?g[l][i].b:g[l][i].w[j];$(el.id+'-gradient').textContent=`${dual('梯度','gradient')} ${fmt(gradient)} · ${Math.abs(gradient)<.00001?'≈ 0':gradient>0?'←':'→'}`;}});
  if($('train-note'))$('train-note').textContent=t('trainHint');

@@ -311,5 +311,17 @@ body.transition-open { overflow: hidden; }
 .decode-history>div { display: grid; gap: 8px; border: 1px solid var(--border); padding: 10px 14px; font-size: 13px; }
 .decode-history small { color: var(--muted); font-size: 10px; }
 .decode-history strong { font-size: 11px; color: var(--accent); }
+.decode-explain-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr); gap: 16px; margin-bottom: 16px; }
+.decode-explain-grid .card { min-width: 0; }
+.decode-explain-grid .chart-foot { line-height: 1.8; }
+.tokenizer-source, .tokenizer-ids { padding: 14px; background: #f6f4f0; line-height: 1.8; overflow-wrap: anywhere; }
+.tokenizer-ids { font-family: monospace; color: var(--accent); }
+.tokenizer-arrow { padding: 14px 0; font-size: 12px; color: var(--muted); }
+.tokenizer-pairs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tokenizer-pairs>div { display: grid; justify-items: center; gap: 8px; border: 1px solid var(--border); padding: 10px; font-size: 13px; }
+.tokenizer-pairs code { color: var(--accent); }
+.decode-network { overflow-x: auto; }
+.decode-network svg { display: block; width: 100%; min-width: 360px; font-size: 12px; fill: var(--accent); }
+@media(max-width:800px) { .decode-explain-grid { grid-template-columns: 1fr; } }
 @media(max-width:1100px) { .decoding-flow { grid-template-columns: 1fr; } .decode-blackbox { padding: 12px 0; } .decode-blackbox>span { transform: rotate(90deg); } }
 @media(max-width:450px) { .feature-summary-row { grid-template-columns: 65px minmax(0,1fr) 30px; gap: 8px; } .candidate { font-size: 12px; gap: 6px; } }
