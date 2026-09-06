@@ -9,7 +9,7 @@
 <body>
   <dialog id="lesson-transition" aria-labelledby="transition-question" aria-describedby="transition-context">
     <div class="transition-shell"><div class="transition-top"><span class="transition-brand">Interactive Neural Networks <span> / </span> <span id="transition-chapter"></span></span><button id="transition-language" class="language"></button></div>
-    <div class="transition-body"><p id="transition-topic" class="eyebrow"></p><span class="transition-rule" aria-hidden="true"></span><h2 id="transition-question"></h2><p id="transition-context"></p><button id="transition-enter" class="primary" autofocus></button></div>
+    <div class="transition-body"><p id="transition-topic" class="eyebrow"></p><span class="transition-rule" aria-hidden="true"></span><h2 id="transition-question"></h2><p id="transition-context"></p><div id="welcome-details" hidden></div><button id="transition-enter" class="primary" autofocus></button></div>
     <div class="transition-bottom"><span id="transition-progress"></span><span id="transition-next-label"></span></div></div>
   </dialog>
   <header><a class="brand" href="index.html"><span class="brand-icon">n<span>·</span></span><span class="brand-name">Interactive Neural Networks</span></a><span class="header-note" data-i18n="tagline"></span><button id="language" class="language" aria-label="Switch language">EN / 中文</button></header>
@@ -30,7 +30,7 @@
     </div>
     <section class="card calculation"><div class="card-top"><h3><span class="section-number">05</span><span data-i18n="calculation"></span></h3><label class="sample-picker"><span data-i18n="sample"></span><select id="sample" aria-label="Select data sample"></select></label></div><div id="gradient-details" hidden></div><div id="calculation"></div></section>
     <section class="takeaway"><span class="tip-icon">✦</span><div><strong data-i18n="tryTitle"></strong><p id="challenge"></p><p id="achievement" role="status"></p></div><button id="next" class="secondary"></button></section>
-    <footer><span>Interactive Neural Networks <span class="footer-dot">/</span> <span data-i18n="footer"></span></span><span data-i18n="synthetic"></span></footer>
+    <footer><span>Interactive Neural Networks <span class="footer-dot">/</span> <span data-i18n="footer"></span> <button id="about-project" class="about-project" data-i18n="about"></button></span><span data-i18n="synthetic"></span></footer>
   </main></div><script src="model.js"></script><script src="advanced-model.js"></script><script src="advanced-lessons.js"></script><script src="app.js"></script>
 </body>
 </html>

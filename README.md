@@ -91,6 +91,7 @@ This is a small, explicitly illustrative vocabulary with preset context-dependen
 
 ## Interface and interaction
 
+- **Welcome page:** First-time visitors see a bilingual introduction to the project’s purpose and its ten experiments before the first lesson. Starting saves a local preference so the introduction does not repeat on later visits; the footer’s “About this project” button reopens it without resetting the current experiment. If browser storage is unavailable, the introduction appears again on a new visit.
 - **Question transitions:** Each lesson opens with a full-screen, bilingual question that sets up its experiment. Choose “Explore” (or press Escape) to enter. Reset restores the experiment directly without replaying the transition; the activation lesson draws a new initial weight and bias. The activation question introduces free parking followed by an hourly fee, matching the zero floor and linear growth of ReLU.
 - **Collapsible left navigation:** Switch freely between all ten lessons. Collapse the sidebar to numbered buttons; hover or use accessible button labels to identify each lesson. Narrow screens default to collapsed navigation unless a saved preference exists.
 - **Live charts:** Adjust sliders to update predictions and loss. Select a data point to inspect its connection to the network.
@@ -106,7 +107,7 @@ The visual design uses a warm white background, ink blue weights, and dark red b
 
 All datasets are generated deterministically for teaching; they are not real survey results. Regression uses mean squared error on scaled values, while classification uses binary cross-entropy.
 
-Hidden layers use ReLU. Regression output layers are linear, except for the activation lesson's switchable ReLU output. Classification uses a sigmoid output. Training computes full-batch analytical gradients and uses backtracking to reduce the step size when needed to avoid increasing loss. The interface reports a reduced learning rate when one is used. ReLU uses a zero subgradient at its kink.
+Hidden layers use ReLU. Regression output layers are linear, except for the activation lesson's switchable ReLU output. Classification uses a sigmoid output. Training computes full-batch analytical gradients and uses backtracking to reduce the step size when needed to avoid increasing loss.  ReLU uses a zero subgradient at its kink.
 
 ## Validation
 
